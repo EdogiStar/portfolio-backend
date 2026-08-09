@@ -8,7 +8,10 @@ const errorHandler = require("./middleware/errorHandler");
 
 const projectRoutes = require("./routes/project.routes");
 const projectImageRoutes = require("./routes/projectImage.routes");
-
+const skillsRoutes = require("./routes/skills.routes");
+const experienceRoutes = require("./routes/experience.routes");
+const educationRoutes = require("./routes/education.routes");
+const contactMessageRoutes = require("./routes/contactMessage.routes");
 
 
 const app = express();
@@ -54,6 +57,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/projects", projectRoutes);
 app.use("/api/projects", projectImageRoutes);
+app.use("/api/skills", skillsRoutes);
+app.use("/api/experience", experienceRoutes);
+app.use("/api/education", educationRoutes);
+app.use("/api/contact", contactMessageRoutes);
 
 
 // ============================================================
