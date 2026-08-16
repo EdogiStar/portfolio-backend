@@ -13,6 +13,7 @@ const experienceRoutes = require("./routes/experience.routes");
 const educationRoutes = require("./routes/education.routes");
 const contactMessageRoutes = require("./routes/contactMessage.routes");
 const profileRoutes = require("./routes/profile.routes");
+const technologyRoutes = require("./routes/technology.routes");
 
 
 const app = express();
@@ -63,6 +64,7 @@ app.use("/api/experience", experienceRoutes);
 app.use("/api/education", educationRoutes);
 app.use("/api/contact", contactMessageRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/technologies", technologyRoutes);
 
 
 // ============================================================
