@@ -15,17 +15,14 @@ const contactMessageRoutes = require("./routes/contactMessage.routes");
 const profileRoutes = require("./routes/profile.routes");
 const technologyRoutes = require("./routes/technology.routes");
 
-
 const app = express();
 
-
-// ============================================================
-// MIDDLEWARE
-// ============================================================
-
+// Middleware
 const allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost:5173",
   process.env.FRONTEND_URL,
+  process.env.ADMIN_FRONTEND_URL,
 ].filter(Boolean);
 
 app.use(
@@ -38,11 +35,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// ============================================================
-// HEALTH CHECK
-// ============================================================
-
+// Health check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
@@ -50,11 +43,7 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-
-// ============================================================
-// ROOT ROUTE
-// ============================================================
-
+// Root route
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -62,6 +51,7 @@ app.get("/", (req, res) => {
   });
 });
 
+// API routes
 app.use("/api/projects", projectRoutes);
 app.use("/api/projects", projectImageRoutes);
 app.use("/api/skills", skillsRoutes);
@@ -71,19 +61,10 @@ app.use("/api/contact", contactMessageRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/technologies", technologyRoutes);
 
-
-// ============================================================
-// 404 HANDLER
-// ============================================================
-
+// 404 handler
 app.use(notFound);
 
-
-// ============================================================
-// GLOBAL ERROR HANDLER
-// ============================================================
-
+// Global error handler
 app.use(errorHandler);
-
 
 module.exports = app;
