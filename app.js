@@ -1,3 +1,4 @@
+```js
 require("dotenv").config();
 
 const express = require("express");
@@ -17,7 +18,10 @@ const technologyRoutes = require("./routes/technology.routes");
 
 const app = express();
 
-// Middleware
+// ============================================================
+// MIDDLEWARE
+// ============================================================
+
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
@@ -35,7 +39,10 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health check
+// ============================================================
+// HEALTH CHECK
+// ============================================================
+
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
@@ -43,7 +50,10 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Root route
+// ============================================================
+// ROOT ROUTE
+// ============================================================
+
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -51,20 +61,30 @@ app.get("/", (req, res) => {
   });
 });
 
-// API routes
+// ============================================================
+// API ROUTES
+// ============================================================
+
 app.use("/api/projects", projectRoutes);
 app.use("/api/projects", projectImageRoutes);
 app.use("/api/skills", skillsRoutes);
 app.use("/api/experience", experienceRoutes);
 app.use("/api/education", educationRoutes);
-app.use("/api/contact", contactMessageRoutes);
+app.use("/api/contact-messages", contactMessageRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/technologies", technologyRoutes);
 
-// 404 handler
+// ============================================================
+// 404 HANDLER
+// ============================================================
+
 app.use(notFound);
 
-// Global error handler
+// ============================================================
+// GLOBAL ERROR HANDLER
+// ============================================================
+
 app.use(errorHandler);
 
 module.exports = app;
+```
